@@ -1,0 +1,59 @@
+server:
+  port: 8080
+  address: 127.0.0.1
+spring:
+  application:
+    name: simple-rest
+  jpa:
+    open-in-view: false
+
+controller:
+  city:
+    cors: http://localhost:8085,http://localhost:8015
+
+management:
+  server:
+    port: 8085
+    address: 127.0.0.1
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: info,health,shutdown,swaggerui,openapi
+      #cors:
+      #  allowed-methods: GET
+      #  allowed-origins: http://localhost:8080
+    enabled-by-default: false
+  endpoint:
+    health:
+      show-details: always
+      enabled: true
+    info:
+      enabled: true
+    shutdown:
+      enabled: true
+
+springdoc:
+  use-management-port: true
+  api-docs:
+    path: /borealis-api-docs
+  swagger-ui:
+    path: /doc.html # redirecting to 'swagger-ui/index.html' anyway
+    operationsSorter: method
+    enabled: true
+  show-actuator: true
+
+documentation:
+  title: City API
+  summary: City REST API
+  description: Super City REST API
+  contact:
+    name: Borealis
+    url: http://springdoc.org
+  servers:
+    - url: http://localhost:8080
+      description: TEST localhost server
+    - url: http://devhost:8080
+      description: DEV localhost server
+    - url: http://localhost:8085
+      description: Actuator server

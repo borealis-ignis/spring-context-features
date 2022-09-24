@@ -1,0 +1,1 @@
+java -jar ../target/spring-rest.jar
